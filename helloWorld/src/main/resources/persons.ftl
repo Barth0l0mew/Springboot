@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
+    <link href="../css/style.css">
 </head>
 <body>
 <form id="form-new" action="/persons" method="post">
@@ -20,8 +21,7 @@
     <form id="form-delete-${person.id}" action="/persons/delete/${person.id}" method="post" >
         <a href="#" onclick="document.getElementById('form-delete-${person.id}').submit();">Delete</a>
     </form>
-       <a href="#" onclick="document.getElementById('form-update-${
-       person.id}').style.display='';">Update</a>
+       <a href="#" onclick="document.getElementById('form-update-${person.id}').style.display='';">Update</a>
            <form id="form-update-${person.id}" action="/persons/update/${person.id}" method="post" style="display:none">
                <label for="id">Id:</label>
                <input type="text" id="id" name="id" value="${person.id}"><br>
