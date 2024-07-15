@@ -33,13 +33,35 @@ public class PersonController {
                 .findFirst()
                 .orElse(null);
         if (person == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(person, HttpStatus.OK);
+         return new ResponseEntity<>(person, HttpStatus.OK);
     }
     @PostMapping
     public ResponseEntity<Person> createPerson (@RequestBody Person person){
        persons.add(person);
         return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Person> updatePerson (@PathVariable("id") Long id, @RequestBody Person person){
+        Person personOld = persons.stream()
+                .filter(p->p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+        if (personOld == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        personOld.setName(person.getName());
+        personOld.setSurname(person.getSurname());
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePerson (@PathVariable("id") Long id){
+        Person person = persons.stream()
+                .filter(p->p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+        if (person == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       persons.remove(person);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
 
 /*
