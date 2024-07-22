@@ -12,6 +12,8 @@
         <module>helloWorld</module>
         <module>ApplicationContext</module>
         <module>Properties</module>
+        <module>AOP</module>
+        <module>Hibernate</module>
     </modules>
 
     <properties>
