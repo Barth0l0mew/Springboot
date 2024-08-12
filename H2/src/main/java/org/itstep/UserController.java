@@ -33,10 +33,12 @@ public class UserController {
 
     @PutMapping(value="/users/{id}")
     User updateUser(@RequestBody User newUser, @PathVariable Long id) {
+        System.out.println(newUser+"   ");
         return userService.findById(id).map(user -> {
             user.setUsername(newUser.getUsername());
             user.setPassword(newUser.getPassword());
             user.setEmail(newUser.getEmail());
+
             return userService.save(user);
         }).orElseGet(() -> { return userService.save(newUser);
         });
@@ -45,5 +47,10 @@ public class UserController {
     @DeleteMapping(value="/users/{id}")
     void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
+    }
+    @DeleteMapping(value = "users/all")
+    void deleteUsers(){
+        List<User> users = userService.findAll();
+        users.stream().forEach(el->userService.deleteById(el.getId()));
     }
 } 
