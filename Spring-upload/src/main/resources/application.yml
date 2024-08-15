@@ -1,0 +1,20 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  mail:
+    default-encoding: UTF-8
+    host: smtp.mail.ru
+    port: 465
+    username: barth0l0mew@mail.ru
+    password: rvwwLPiqksc9kNqBbD60
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        debug: true
+    protocol: smtp
+    test-connection: false

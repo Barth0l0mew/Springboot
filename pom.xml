@@ -18,6 +18,7 @@
 
         <module>Persisten</module>
         <module>CRUD_project</module>
+        <module>Spring-upload</module>
     </modules>
 
     <properties>
