@@ -11,6 +11,7 @@ public class Email {
     String subject;
     String text;
     String template;
+    String attachmentPath;
     Map<String, Object> properties;
 
 }
