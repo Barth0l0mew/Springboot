@@ -1,5 +1,7 @@
 package org.itstep;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,11 +12,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api")
 public class WeatherRestController {
-    @GetMapping("/")
+    @GetMapping({"/",""})
     public void getWether (){
         URL url = null;
         HttpURLConnection conn = null;
@@ -64,6 +67,34 @@ public class WeatherRestController {
 
         // Вывод тела ответа
         System.out.println("Response Body: " + response.toString());
+        //ИЗВЛЕЧЬ информацию
+        System.out.println(response.indexOf("hours")+"  "+ response.indexOf(""));
+        String jsonString = response.toString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Преобразование строки JSON в JsonNode
+            JsonNode rootNode = objectMapper.readTree(jsonString);
+            JsonNode forecasts = rootNode.path("forecasts");
+
+            // Перебор прогнозов для получения температуры на 15:00
+            int i = 0;
+            for (JsonNode forecast : forecasts) {
+                JsonNode hours = forecast.path("hours");
+
+                for (JsonNode hour : hours) {
+                    String hourValue = hour.path("hour").asText();
+                    if (Integer.toString(i).equals(hourValue)) {
+                        int temperature = hour.path("temp").asInt();
+                        if (i<24)
+                            WeatherNow.temperatures[i++] = temperature;
+                        System.out.printf("Hour: %d Temperature: %d%n", hour.path("hour").asInt(), temperature);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(Arrays.toString(WeatherNow.temperatures));
     }
 
 }

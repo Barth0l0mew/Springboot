@@ -20,6 +20,7 @@
         <module>CRUD_project</module>
         <module>Spring-upload</module>
         <module>Weather</module>
+        <module>Spring-cars</module>
     </modules>
 
     <properties>

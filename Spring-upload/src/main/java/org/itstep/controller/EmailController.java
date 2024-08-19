@@ -46,7 +46,7 @@ public class EmailController {
         emailService.sendHtmlMessage(email);
         return "success";
     }
-    @PostMapping("/sendfile")
+    @GetMapping("/sendfile")
     public String sendEmail() throws MessagingException {
         try {
             Email email = new Email();
@@ -56,7 +56,7 @@ public class EmailController {
             email.setText("email.html");
             email.setAttachmentPath("C:/Users/gk/Springboot/Spring-upload/src/main/resources/uploaded/labeo.jpg");
             emailService.sendEmailWithAttachment(email);
-            return "Email sent successfully!";
+            return "success";
         } catch (MailException e) {
             return "Error while sending email: " + e.getMessage();
         }

@@ -56,6 +56,7 @@ public class EmailService {
         helper.setText(email.getText());
 
         File attachment = new File(email.getAttachmentPath());
+        System.out.println("email attachmant "+attachment.getName() );
         helper.addAttachment(attachment.getName(), attachment); // добавление вложения
 
         javaMailSender.send(message);
