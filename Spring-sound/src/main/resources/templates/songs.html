@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="
+http://www.thymeleaf.org
+">
+<head>
+    <title>List of Songs</title>
+    <style>
+        .photo {
+          border-radius: 50%;
+          border: 1px solid black;
+          width:50px;
+          height:50px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>List of Songs</h1>
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Song Name</th>
+        <th>Song Year</th>
+        <th>Audio</th>
+    </tr>
+    <tr th:each="song : ${songs}">
+        <td th:text="${song.id}">ID</td>
+        <td th:text="${song.songName}">Song Name</td>
+        <td th:text="${song.songYear}">Song Year</td>
+        <td>
+            <img class="photo" th:src="${song.photoFilePath}" alt="">
+            <audio controls>
+                <source th:src="${song.audioFilePath}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

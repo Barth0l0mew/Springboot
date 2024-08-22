@@ -21,8 +21,14 @@ public class FirmController {
 
     @GetMapping({"/index","/"})
     public String index(Model model) {
+
         model.addAttribute("firms", firmService.findAll());
         model.addAttribute("model", new ModelCar()); //Иначе будет ошибка при первом рендеринге
+        return "index";
+    }
+    @GetMapping ("/save")
+    public String save (Model model){
+        firmService.saveFirms();
         return "index";
     }
 
@@ -31,8 +37,11 @@ public class FirmController {
         
 //System.out.println(id);
         model.addAttribute("firms", firmService.findAll());
+
+
         Set<ModelCar> models = firmService.findModels(Long.parseLong(id));
         ModelAndView modelAndView = new ModelAndView("index::models");
+//        ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("models", models);
         return modelAndView;
     }
@@ -41,6 +50,7 @@ public class FirmController {
     public ModelAndView model(Model model, @RequestParam (name = "id") String id) {
         model.addAttribute("model", modelService.findById(Long.parseLong(id)));
         ModelAndView modelAndView = new ModelAndView("index::model");
+    //    ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("model", modelService.findById(Long.parseLong(id)));
         
 //System.out.println(modelService.findById(Long.parseLong(id)));

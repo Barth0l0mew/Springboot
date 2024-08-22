@@ -21,6 +21,7 @@
         <module>Spring-upload</module>
         <module>Weather</module>
         <module>Spring-cars</module>
+        <module>Spring-sound</module>
     </modules>
 
     <properties>

@@ -38,16 +38,20 @@ public class FirmService {
         ObjectMapper mapper = new ObjectMapper();
         FirmJson[] firms = null;
         try {
-            firms = mapper.readValue(new File("src/main/resources/cars.json"), FirmJson[].class);
+            firms = mapper.readValue(new File("C:/Users/gk/Springboot/Spring-cars/src/main/resources/cars.json"), FirmJson[].class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-Arrays.stream(firms).forEach(firm -> {
-    Set<ModelJson> modelsJson = firm.getModels();
+
+        Arrays.stream
+                        (firms)
+                .forEach(firm -> {
+                    Set<ModelJson> modelsJson = new HashSet<ModelJson>(firm.getModels());
                     Set<ModelCar> models = new HashSet<>();
-modelsJson.stream()
-        .forEach(
+
+                    modelsJson.stream
+                                    ()
+                            .forEach(
                                     model -> {
                                         ModelCar modelNew = ModelCar.builder()
                                                 .idSymbol(model.getIdSymbol())
@@ -57,9 +61,9 @@ modelsJson.stream()
                                                 .yearFrom(model.getYearFrom())
                                                 .yearTo(model.getYearTo())
                                                 .build();
-                                        
-modelRepository.save
-(modelNew);
+
+                                        modelRepository.save
+                                                (modelNew);
                                         models.add(modelNew);
                                     }
 
@@ -72,9 +76,9 @@ modelRepository.save
                             .country(firm.getCountry())
                             .models(models)
                             .build();
-                    
-firmRepository.save
-(firmNew);
+
+                    firmRepository.save
+                            (firmNew);
 
                 });
     }
