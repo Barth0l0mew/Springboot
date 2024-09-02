@@ -22,6 +22,7 @@
         <module>Weather</module>
         <module>Spring-cars</module>
         <module>Spring-sound</module>
+        <module>SpringSecurity</module>
     </modules>
 
     <properties>
