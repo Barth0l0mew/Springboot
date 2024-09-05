@@ -23,6 +23,7 @@
         <module>Spring-cars</module>
         <module>Spring-sound</module>
         <module>SpringSecurity</module>
+        <module>GarbageCollector</module>
     </modules>
 
     <properties>
