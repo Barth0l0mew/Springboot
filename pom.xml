@@ -25,6 +25,7 @@
         <module>SpringSecurity</module>
         <module>GarbageCollector</module>
         <module>JasperReports</module>
+        <module>SpringTelegram</module>
     </modules>
 
     <properties>

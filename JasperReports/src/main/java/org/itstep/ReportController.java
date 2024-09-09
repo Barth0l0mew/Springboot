@@ -32,5 +32,28 @@ public class ReportController {
         }
         return "redirect:/customers.html";
     }
-
+    @GetMapping (value = "/customers/report3")
+    public String generateReport3 (){
+        List<Customer> customers = customerService.findAll();
+        try {
+            reportService.exportReport(customers,"customer3.jrxml","customers3.html","html");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/customers3.html";
+    }
+    @GetMapping (value = "/customers/report1")
+    public String generateReport1 (){
+        List<Customer> customers = customerService.findAll();
+        try {
+            reportService.exportReport(customers,"customer.jrxml","customers1.html","html");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/customers1.html";
+    }
 }
