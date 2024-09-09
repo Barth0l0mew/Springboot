@@ -24,6 +24,7 @@
         <module>Spring-sound</module>
         <module>SpringSecurity</module>
         <module>GarbageCollector</module>
+        <module>JasperReports</module>
     </modules>
 
     <properties>
