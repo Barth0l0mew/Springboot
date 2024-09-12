@@ -26,6 +26,10 @@
         <module>GarbageCollector</module>
         <module>JasperReports</module>
         <module>SpringTelegram</module>
+        <module>SpringBot2</module>
+        <module>SpringBot3</module>
+        <module>SpringBot4</module>
+        <module>page-sort</module>
     </modules>
 
     <properties>
