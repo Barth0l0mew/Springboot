@@ -1,0 +1,1 @@
+https://github.com/KirillovItstep/classworks/blob/main/person/data.sql

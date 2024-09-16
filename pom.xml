@@ -30,6 +30,7 @@
         <module>SpringBot3</module>
         <module>SpringBot4</module>
         <module>page-sort</module>
+        <module>DinamicPage</module>
     </modules>
 
     <properties>
